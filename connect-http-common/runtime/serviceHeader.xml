@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services>
+	<header>
+		<BranchId>61001</BranchId>
+		<Channel>CS</Channel>
+		<ConsumerId>001</ConsumerId>
+		<GlobalSeq>001</GlobalSeq>
+		<LegalRepCode>001</LegalRepCode>
+		<LocalLang>zh-CN</LocalLang>
+		<ServiceCode>test</ServiceCode>
+		<ServiceName>test</ServiceName>
+		<SourceSysId>01</SourceSysId>
+		<TranCode>001</TranCode>
+		<TranDate>20180101</TranDate>
+		<TranSeq>0001</TranSeq>
+		<TranTeller>100858</TranTeller>
+		<TranTime>20180101</TranTime>
+	</header>
+</services>
