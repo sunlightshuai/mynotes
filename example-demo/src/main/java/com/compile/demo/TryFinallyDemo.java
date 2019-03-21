@@ -10,7 +10,7 @@ public class TryFinallyDemo {
 		try{
 			return a;
 		} finally{
-			a = "I hate the world";
+			a = "thank you xiaoyang";
 		}
 		
 	}
