@@ -16,10 +16,10 @@
 	<vendor>BOSent</vendor>
 	<version>1.0</version>
 
-	<!-- 服务接口 -->
+	<!-- 识别客户场景  个人客户识别 -->
 	<service name="selectPersonCustDiscernInfo" invoke="selectPersonCustDiscernInfo" engine="java"
 		location="com.bosent.hotdeploycustomer.identify.service.CustDiscernServices">
-		<description>服务接口 </description>
+		<description>识别客户场景  个人客户识别 </description>
 		<attribute name="discernType" type="String" mode="IN" optional="false" value="110027" title="识别类型" />
 		<attribute name="discernId" type="String" mode="IN" optional="false" value="110027" title="识别号" />
 		<attribute name="custName" type="String" mode="IN" optional="true" title="客户名" />
