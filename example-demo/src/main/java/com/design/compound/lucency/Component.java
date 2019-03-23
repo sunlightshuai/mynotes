@@ -3,7 +3,7 @@ package com.design.compound.lucency;
 import java.util.Enumeration;
 
 /**
- * 安全的合成模式
+ * 透明合成模式
  * 抽象的构建角色
  * @author sunli
  *
