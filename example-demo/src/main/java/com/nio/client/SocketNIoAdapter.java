@@ -23,12 +23,11 @@ public class SocketNIoAdapter {
 	public Object doComm(String param) {
 		long begin = System.currentTimeMillis();
 		byte[] result = null;
-		String addres = IP;
 		SocketChannel client = null;
 		Selector selector = null;
 		try {
 		    selector = Selector.open();
-			SocketAddress address = new InetSocketAddress(addres, PORT);
+			SocketAddress address = new InetSocketAddress(IP, PORT);
 			
 			client = SocketChannel.open(address);
 			client.configureBlocking(false);

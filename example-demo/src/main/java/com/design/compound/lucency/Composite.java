@@ -1,11 +1,16 @@
-package com.design.compound;
+package com.design.compound.lucency;
 
 import java.util.Enumeration;
 import java.util.Vector;
 
+/**
+ * 定义的全部行为的对象角色
+ * @author sunli
+ *
+ */
 public class Composite implements Component {
 	
-	private Vector componentVector = new Vector();
+	private Vector<Component> componentVector = new Vector<Component>();
 
 	@Override
 	public Composite getComposite() {
@@ -14,9 +19,9 @@ public class Composite implements Component {
 
 	@Override
 	public void sampleOperation() {
-		Enumeration enumeration = components();
+		Enumeration<Component> enumeration = components();
 		while(enumeration.hasMoreElements()){
-			((Component)enumeration.nextElement()).sampleOperation();
+			enumeration.nextElement().sampleOperation();
 		}
 	}
 	
@@ -28,7 +33,7 @@ public class Composite implements Component {
 		componentVector.removeElement(component);
 	}
 	
-	public Enumeration components(){
+	public Enumeration<Component> components(){
 		return componentVector.elements();
 	}
 	
