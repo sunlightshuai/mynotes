@@ -14,6 +14,17 @@ import java.util.List;
  * 此代码是String源码中的算法，稍作改良
  * 该算法解决的问题：1，当其他语言（C或angular）组成拼接的字符串路径，不能被java语言正常转义。
  * 2，解决window和linux的路径问题。
+ * 
+ * 问题产生原因：java的词汇翻译采用Unicode的标准，官方文档解释如下：
+ * In addition to the processing implied by the grammar, 
+ * for each raw input character that is a backslash \, 
+ * input processing must consider how many other \ characters contiguously precede it, 
+ * separating it from a non-\ character or the start of the input stream. 
+ * If this number is even, then the \ is eligible to begin a Unicode escape; 
+ * if the number is odd, then the \ is not eligible to begin a Unicode escape.
+ * 
+ * 主要是java词法翻译的时候，认为传入的"\"不是路径分隔符，而是一个普通字符，此算法将"\"又还原成路径分割符。
+ * 关于路径分隔符参见javajdk源码DefaultFileSystem.getFileSystem();
  * @author sunli
  *
  */
