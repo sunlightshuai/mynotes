@@ -16,83 +16,20 @@
 	<vendor>BOSent</vendor>
 	<version>1.0</version>
 
-	<!-- 识别客户场景  个人客户识别 -->
-	<service name="selectPersonCustDiscernInfo" invoke="selectPersonCustDiscernInfo" engine="java"
-		location="com.bosent.hotdeploycustomer.identify.service.CustDiscernServices">
-		<description>识别客户场景  个人客户识别 </description>
+	<!-- 测试-->
+	<service name="selectInfo" invoke="selectInfo" engine="java"
+		location="xxx.xx.xxx.CustDiscernServices">
+		<description>测试</description>
 		<attribute name="discernType" type="String" mode="IN" optional="false" value="110027" title="识别类型" />
 		<attribute name="discernId" type="String" mode="IN" optional="false" value="110027" title="识别号" />
-		<attribute name="custName" type="String" mode="IN" optional="true" title="客户名" />
-		<attribute name="agentDiscernType" type="String" mode="IN" optional="true" title="代理人识别类型" />
-		<attribute name="agentDiscernId" type="String" mode="IN" optional="true" title="代理人识别号码" />
-		<attribute name="agentName" type="String" mode="IN" optional="true" title="代理人姓名" />
-		<attribute name="notarType" type="String" mode="IN" optional="true" title="公证类型" />
-		<attribute name="notarNo" type="String" mode="IN" optional="true" title="公证号码" />
-		<attribute name="legalPerson" type="String" mode="IN" optional="true" title="法人代码" />
 		
-		
-		<attribute name="discernInfoList" type="List" mode="OUT" optional="true" title="列表">
+		<attribute name="returnList" type="List" mode="OUT" optional="true" title="列表">
 			<attribute name="infoType" type="String" mode="OUT" optional="true" title="信息类型"/>
 			<attribute name="discernType" type="String" mode="OUT" optional="true" title="识别类型"/>
-			<attribute name="discernId" type="String" mode="OUT" optional="true" title="识别号"/>
-			<attribute name="custName" type="String" mode="OUT" optional="true" title="客户名"/>
-			<attribute name="custNo" type="String" mode="OUT" optional="true" title="客户号"/>
-			<attribute name="gender" type="String" mode="OUT" optional="true" title="性别"/>
-			<attribute name="age" type="String" mode="OUT" optional="true" title="年龄"/>
-			<attribute name="idenType" type="String" mode="OUT" optional="true" title="开户证件类型"/>
-			<attribute name="idenNo" type="String" mode="OUT" optional="true" title="开户证件号码"/>
-			<attribute name="idenExpiraDate" type="String" mode="OUT" optional="true" title="证件有效期"/>	
-			<attribute name="idenEffFlag" type="String" mode="OUT" optional="true" title="证件到期标识"/>	
-			<attribute name="idenDueDays" type="String" mode="OUT" optional="true" title="证件到期剩余天数"/>
-			<attribute name="telNum" type="String" mode="OUT" optional="true" title="联系方式"/>
-			<attribute name="address" type="String" mode="OUT" optional="true" title="联系地址"/>
-			<attribute name="ownerId" type="String" mode="OUT" optional="true" title="客户经理ID"/>
-			<attribute name="ownerOrgId" type="String" mode="OUT" optional="true" title="归属机构ID"/>	
-			<attribute name="badFlag" type="String" mode="OUT" optional="true" title="是否黑名单"/>
 			
-			<attribute name="country" type="String" mode="OUT" optional="true" title="国别"/>
-			<attribute name="occupation" type="String" mode="OUT" optional="true" title="职业"/>
-			
-			<attribute name="birthDate" type="String" mode="OUT" optional="true" title="出生日期"/>
-			<attribute name="custNamePinyin" type="String" mode="OUT" optional="true" title="客户拼音名称"/>
-			
-			<attribute name="legalPerson" type="String" mode="OUT" optional="true" title="法人代码" />
 		</attribute>
-		<attribute name="totalNum"     		type="Integer"   mode="OUT" optional="true"   title="总记录数"/>
-		<attribute name="returnCode"     		type="Map"   mode="OUT" optional="true"   title="标准返回信息"/>
+		<attribute name="totalNum" 	type="Integer"   mode="OUT" optional="true"   title="总记录数"/>
+		<attribute name="returnCode"  type="Map"   mode="OUT" optional="true"   title="标准返回信息"/>
 	</service>
 	
-	<!-- 企业客户识别查询   -->
-	<service name="selectCompCustDiscernInfo" engine="java" export="true"
-	 location="com.bosent.hotdeploycustomer.identify.service.CustDiscernServices" 
-	 invoke="selectCompCustDiscernInfo">
-	 	<description>企业客户识别查询</description>
-		<attribute name="discernType" type="String" mode="IN" optional="false" title="识别类型"/>
-		<attribute name="discernId" type="String" mode="IN" optional="false" title="识别号"/>
-		<attribute name="custName" type="String" mode="IN" optional="true" title="客户名"/>
-		<attribute name="legalPerson" type="String" mode="IN" optional="true" title="法人代码"/>
-		
-		<attribute name="compDiscernInfoList" type="List" mode="OUT" optional="true" title="列表">
-			<attribute name="discernType" type="String" mode="OUT" optional="true" title="识别类型"/>
-			<attribute name="discernId" type="String" mode="OUT" optional="true" title="识别号"/>
-			<attribute name="custName" type="String" mode="OUT" optional="true" title="客户名称"/>
-			<attribute name="custNo" type="String" mode="OUT" optional="true" title="客户号"/>
-			<attribute name="idenType" type="String" mode="OUT" optional="true" title="开户证件类型"/>
-			<attribute name="idenNo" type="String" mode="OUT" optional="true" title="开户证件号码"/>
-			<attribute name="idenExpiraDate" type="String" mode="OUT" optional="true" title="证件有效期"/>	
-			<attribute name="idenEffFlag" type="String" mode="OUT" optional="true" title="证件到期标识"/>	
-			<attribute name="idenDueDays" type="String" mode="OUT" optional="true" title="证件到期剩余天数"/>
-			<attribute name="businessScope" type="String" mode="OUT" optional="true" title="经营范围"/>
-			<attribute name="businessAddress" type="String" mode="OUT" optional="true" title="公司地址"/>
-			<attribute name="legalPerson" type="String" mode="OUT" optional="true" title="法定代表人"/>
-			<attribute name="legalPersonContactWay" type="String" mode="OUT" optional="true" title="法人联系方式"/>
-			<attribute name="ownerId" type="String" mode="OUT" optional="true" title="客户经理ID"/>
-			<attribute name="ownerOrgId" type="String" mode="OUT" optional="true" title="归属机构ID"/>	
-			<attribute name="badFlag" type="String" mode="OUT" optional="true" title="是否黑名单"/>	
-		</attribute>
-		<attribute name="totalNum"     		type="Integer"   mode="OUT" optional="true"   title="总记录数"/>
-		<attribute name="returnCode"     		type="Map"   mode="OUT" optional="true"   title="标准返回信息"/>
-	</service>
-	
-
 </services>
