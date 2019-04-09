@@ -35,6 +35,6 @@ public class SendMessageServiceImpl implements ISendMessageService {
 	
 	public static void main(String[] args) {
 		SendMessageServiceImpl sendMessageServiceImpl = new SendMessageServiceImpl();
-		sendMessageServiceImpl.sendMessage("services_identify", "selectPersonCustDiscernInfo");
+		sendMessageServiceImpl.sendMessage("services_identify", "selectInfo");
 	}
 }
