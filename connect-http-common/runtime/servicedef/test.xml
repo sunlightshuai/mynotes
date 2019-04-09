@@ -18,18 +18,17 @@
 
 	<!-- 测试-->
 	<service name="selectInfo" invoke="selectInfo" engine="java"
-		location="xxx.xx.xxx.CustDiscernServices">
+		location="xxx.xx.xxx.xxx">
 		<description>测试</description>
-		<attribute name="discernType" type="String" mode="IN" optional="false" value="110027" title="识别类型" />
-		<attribute name="discernId" type="String" mode="IN" optional="false" value="110027" title="识别号" />
+		<attribute name="discernType" type="String" mode="IN" optional="true" value="110027" title="类型" />
+		<attribute name="discernId" type="String" mode="IN" optional="true" value="110027" title="号码" />
 		
 		<attribute name="returnList" type="List" mode="OUT" optional="true" title="列表">
 			<attribute name="infoType" type="String" mode="OUT" optional="true" title="信息类型"/>
-			<attribute name="discernType" type="String" mode="OUT" optional="true" title="识别类型"/>
-			
+			<attribute name="discernType" type="String" mode="OUT" optional="true" title="类型"/>
+			<attribute name="discernId" type="String" mode="OUT" optional="true" value="110027" title="号码" />
 		</attribute>
 		<attribute name="totalNum" 	type="Integer"   mode="OUT" optional="true"   title="总记录数"/>
 		<attribute name="returnCode"  type="Map"   mode="OUT" optional="true"   title="标准返回信息"/>
 	</service>
-	
 </services>
