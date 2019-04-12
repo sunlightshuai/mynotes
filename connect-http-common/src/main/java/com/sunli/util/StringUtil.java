@@ -6,8 +6,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import com.sunli.constant.Constant;
-
 public class StringUtil {
 	
 	public static ClassLoader getDefaultClassLoader(){
@@ -29,16 +27,6 @@ public class StringUtil {
 		return cl;
 	}
 	
-	public static DocumentBuilder loadServicesXml() {
-		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder dbuilder = null;
-		try {
-			dbuilder = dbFactory.newDocumentBuilder();
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-		}
-		return dbuilder;
-	}
 	
 	public static final String getUserDir() {
 		return System.getProperty("user.dir");

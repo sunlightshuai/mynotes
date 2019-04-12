@@ -1,4 +1,4 @@
-package com.sunli.resource.service.impl;
+package com.sunli.resource.service;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -11,15 +11,18 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.sunli.resource.service.AbstractLoadDocumentService;
-import com.sunli.resource.service.ExecuteObtainParseResultService;
 import com.sunli.resource.service.model.AttrParamModel;
 import com.sunli.resource.service.model.FormatModel;
 import com.sunli.util.StringUtil;
 
-public class BodyParseImpl extends AbstractLoadDocumentService implements ExecuteObtainParseResultService {
+/**
+ * 解析body体
+ * @author sunli
+ *
+ */
+public class BodyDocumentService extends AbstractLoadDocumentService {
 	
-private static final String ROOT = "services";
+	private static final String ROOT = "services";
 	
 	private static final String SERVICE = "service";
 	
@@ -54,6 +57,29 @@ private static final String ROOT = "services";
 	private static final String TYPE_LIST = "List";
 	
 	private static final String TYPE_MAP = "Map";
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public Map getXMLDocument() {
+		File files = new File(StringUtil.getDefaultBodyPath());
+		Map<String,Map<String, FormatModel>> result = new ConcurrentHashMap<String,Map<String, FormatModel>>();
+		if (files.isDirectory()) {
+			String[] fileNames = files.list();
+			File fileAbsoluteFile = files.getAbsoluteFile();
+			String foldName = fileAbsoluteFile.getAbsolutePath();
+			for (String tempName : fileNames) {
+				Document document = loadToDocument(foldName+File.separator+tempName);
+				NodeList nodeList = document.getElementsByTagName(ROOT);
+				Map<String,FormatModel> resultMap = new ConcurrentHashMap<String,FormatModel>();
+				for (int i = 0;i<nodeList.getLength();i++) {
+					Node node = nodeList.item(i);
+					NodeList nodeListChildNodes = node.getChildNodes();
+					parseServiceTag(resultMap,nodeListChildNodes);
+				}
+				result.put(tempName, resultMap);
+			}
+		}
+		return result;
+	}
 	
 	public void parseServiceTag(Map<String,FormatModel> resultMap,NodeList services) {
 		for (int j = 0;j<services.getLength();j++) {
@@ -154,29 +180,4 @@ private static final String ROOT = "services";
 			attrParam.add(attrParamModel);
 		}
 	}
-
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@Override
-	public Map doHandler() {
-		File files = new File(StringUtil.getDefaultBodyPath());
-		Map<String,Map<String, FormatModel>> result = new ConcurrentHashMap<String,Map<String, FormatModel>>();
-		if (files.isDirectory()) {
-			String[] fileNames = files.list();
-			File fileAbsoluteFile = files.getAbsoluteFile();
-			String foldName = fileAbsoluteFile.getAbsolutePath();
-			for (String tempName : fileNames) {
-				Document document = loadToDocument(foldName+File.separator+tempName);
-				NodeList nodeList = document.getElementsByTagName(ROOT);
-				Map<String,FormatModel> resultMap = new ConcurrentHashMap<String,FormatModel>();
-				for (int i = 0;i<nodeList.getLength();i++) {
-					Node node = nodeList.item(i);
-					NodeList nodeListChildNodes = node.getChildNodes();
-					parseServiceTag(resultMap,nodeListChildNodes);
-				}
-				result.put(tempName, resultMap);
-			}
-		}
-		return result;
-	}
-	
 }

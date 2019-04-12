@@ -8,9 +8,9 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Map;
 
-public abstract class AbstractHttpConnectClient {
+public abstract class AbstractHttpConnectClient implements HttpClientService {
 	
-	public abstract String frontMessage(String servicesName,Map<String,Object> bodyMap,Map<String,Object> headMap);
+	public abstract String frontMessage(String servicesFileName,String serviceName);
 	
 	public abstract Map<String,Object> backMessage(String message);
 

@@ -1,4 +1,4 @@
-package com.sunli.constant;
+package com.sunli.util;
 
 public class Constant {
 

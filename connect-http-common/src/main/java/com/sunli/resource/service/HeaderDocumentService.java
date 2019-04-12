@@ -1,4 +1,4 @@
-package com.sunli.resource.service.impl;
+package com.sunli.resource.service;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -7,19 +7,22 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.sunli.resource.service.AbstractLoadDocumentService;
-import com.sunli.resource.service.ExecuteObtainParseResultService;
 import com.sunli.util.StringUtil;
 
-public class HeaderParseImpl extends AbstractLoadDocumentService implements ExecuteObtainParseResultService {
-	
+/**
+ * 解析header体
+ * @author sunli
+ *
+ */
+public class HeaderDocumentService extends AbstractLoadDocumentService {
+
 	private static final String ROOT = "services";
 	
 	private static final String HEADER = "header";
 	
 	private static final String TEXT = "#text";
-
-	public Map<String,Object> doHandler(){
+	
+	public Map<String,Object> getXMLDocument(){
 		Document document = loadToDocument(StringUtil.getDefaultHeaderConfigPath());
 		Map<String,Object> resultMap = new ConcurrentHashMap<String, Object>();
 		NodeList headerNode = document.getElementsByTagName(ROOT);

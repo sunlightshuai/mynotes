@@ -4,6 +4,12 @@ import java.util.Map;
 
 public interface HttpClientService {
 
-	public Map<String,? extends Object> sendMessage(String servicesName,Map<String,Object> bodyMap,Map<String,Object> headMap);
+	/**
+	 * 发送http请求
+	 * @param servicesFileName 文件名称
+	 * @param serviceName	文件名称中具体的文件服务名
+	 * @return
+	 */
+	public Map<String,? extends Object> sendMessage(String servicesFileName,String serviceName);
 	
 }

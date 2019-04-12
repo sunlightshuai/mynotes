@@ -1,6 +1,6 @@
 package com.sunli.factory;
 
-public abstract class SFactory {
+public abstract class Factory {
 	
 	public Object createObject(Class<?> clazz) {
 		if (null == clazz) {

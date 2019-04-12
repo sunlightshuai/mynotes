@@ -8,8 +8,8 @@ import java.io.InputStream;
 import java.util.Properties;
 
 /**
- * 
- * @author zhushuai
+ * 读取配置文件
+ * @author sunli
  *
  */
 public class PropertiesPathResource {
