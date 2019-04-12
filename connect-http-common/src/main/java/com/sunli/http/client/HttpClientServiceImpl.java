@@ -14,16 +14,13 @@ public class HttpClientServiceImpl extends AbstractHttpHandler {
 	public String frontMessage(String servicesFileName,String serviceName) {
 		Map<String,Object> inputMap = new HashMap<String,Object>();
 		Map<String,Object> serviceMap = new HashMap<String,Object>();
-		// headMap为空
-		
 		BodyDocumentService bodyDocument = new BodyDocumentService();
 		LoadDocumentDecorator documentDecorator = new LoadDocumentDecorator(bodyDocument);
 		HeaderDocumentService headerDoc = new HeaderDocumentService();
-		
 		serviceMap.put("Body", documentDecorator.getXMLDocument());
-		
 		documentDecorator = new LoadDocumentDecorator(headerDoc);
-		inputMap.put("Service", documentDecorator.getXMLDocument());
+		serviceMap.put("header", documentDecorator.getXMLDocument());
+		inputMap.put("Service", serviceMap);
 		return JsonUtil.mapToJsonStr(inputMap);
 	}
 
