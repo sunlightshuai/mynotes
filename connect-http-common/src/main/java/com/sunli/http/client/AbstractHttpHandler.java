@@ -1,9 +1,10 @@
 package com.sunli.http.client;
 
 import java.util.Map;
+import java.util.Properties;
 
-import com.sunli.resource.ObtainResource;
-import com.sunli.resource.service.LoadDocumentService;
+import com.sunli.resource.PropertiesPathResource;
+import com.sunli.util.StringUtil;
 
 public abstract class AbstractHttpHandler extends AbstractHttpConnectClient {
 	
@@ -13,9 +14,10 @@ public abstract class AbstractHttpHandler extends AbstractHttpConnectClient {
 	
 	public Map<String,Object> sendMessage(String servicesFileName,String serviceName) {
 		String inputStr = frontMessage(servicesFileName,serviceName);
-		ObtainResource resource = new ObtainResource();
-		Map<String,Object> resourceMap = resource.getResource();
-		String uri = (String) resourceMap.get(HTTP_URI);
+		String urlPath = StringUtil.getDefultApplicationConfigPath();
+		PropertiesPathResource resource = new PropertiesPathResource(urlPath);
+		Properties properties = resource.getProperties();
+		String uri = (String) properties.get(HTTP_URI);
 		String receive = doSendMessage(uri+SPLIT+serviceName,inputStr);
 		return backMessage(receive);
 	}

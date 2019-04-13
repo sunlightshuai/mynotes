@@ -60,4 +60,10 @@ public class StringUtil {
 		return name;
 	}
 	
+	public static String getDefultApplicationConfigPath() {
+		StringBuilder sbler = new StringBuilder();
+		sbler.append(StringUtil.getUserDir()).append(File.separator).append(Constant.PARENT_DIR).append(File.separator).append(Constant.APP_CONFIG);
+		return sbler.toString();
+	}
+	
 }
