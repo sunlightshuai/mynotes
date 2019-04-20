@@ -1,9 +1,11 @@
 package com.design.singleton.reg;
 
+import java.io.ObjectStreamException;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RegSingleton {
+public class RegSingleton implements Serializable{
 	
 	protected RegSingleton(){}
 
