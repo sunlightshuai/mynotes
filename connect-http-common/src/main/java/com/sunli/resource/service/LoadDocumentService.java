@@ -8,6 +8,6 @@ import java.util.Map;
  *
  */
 public interface LoadDocumentService {
-
+	
 	public Map<String,Object> getXMLDocument();
 }

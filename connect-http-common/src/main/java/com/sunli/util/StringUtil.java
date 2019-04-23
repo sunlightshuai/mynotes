@@ -2,9 +2,6 @@ package com.sunli.util;
 
 import java.io.File;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 
 public class StringUtil {
 	
@@ -63,6 +60,12 @@ public class StringUtil {
 	public static String getDefultApplicationConfigPath() {
 		StringBuilder sbler = new StringBuilder();
 		sbler.append(StringUtil.getUserDir()).append(File.separator).append(Constant.PARENT_DIR).append(File.separator).append(Constant.APP_CONFIG);
+		return sbler.toString();
+	}
+	
+	public static String getDefultFactoryPath() {
+		StringBuilder sbler = new StringBuilder();
+		sbler.append(StringUtil.getUserDir()).append(File.separator).append(Constant.PARENT_DIR).append(File.separator).append(Constant.FACTORY);
 		return sbler.toString();
 	}
 	

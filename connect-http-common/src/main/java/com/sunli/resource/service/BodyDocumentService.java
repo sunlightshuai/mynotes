@@ -58,6 +58,8 @@ public class BodyDocumentService extends AbstractLoadDocumentService {
 	
 	private static final String TYPE_MAP = "Map";
 	
+	
+	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public Map getXMLDocument() {
 		File files = new File(StringUtil.getDefaultBodyPath());
