@@ -21,7 +21,13 @@ public class Factory implements BeanFactory ,Serializable{
 		PropertiesPathResource resource = new PropertiesPathResource(factory);
 		Properties properties = resource.getProperties();
 		for (Entry<Object, Object> entry:properties.entrySet()){
-			register.put((String) entry.getKey(), entry.getValue());
+			String className = (String) entry.getValue();
+			try {
+				Class<?> clazzObj = Class.forName(className);
+				register.put((String) entry.getKey(), clazzObj.newInstance());
+			} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -31,14 +37,8 @@ public class Factory implements BeanFactory ,Serializable{
 
 	@Override
 	public Object getBean(String className) {
-		String clazz = (String)register.get(className);
-		try {
-			Class<?> clazzObj = Class.forName(clazz);
-			return clazzObj.newInstance();
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
-			e.printStackTrace();
-		}
-		return null;
+		Object clazz = register.get(className);
+		return clazz;
 	}
 	
 	private Object readResolve() throws ObjectStreamException {    
