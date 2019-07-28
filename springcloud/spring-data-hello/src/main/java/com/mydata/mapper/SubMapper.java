@@ -6,11 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.HashMap;
 import java.util.List;
 
-/**
- * @Author:0xOO
- * @Date: 2018/9/26 0026
- * @Time: 15:20
- */
+
 @Repository
 public interface SubMapper {
 
