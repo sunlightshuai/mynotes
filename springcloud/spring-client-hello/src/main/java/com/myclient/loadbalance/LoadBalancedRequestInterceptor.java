@@ -12,13 +12,11 @@ import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.scheduling.annotation.Scheduled;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
-import java.nio.charset.Charset;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -71,27 +69,9 @@ public class LoadBalancedRequestInterceptor implements ClientHttpRequestIntercep
 
         URLConnection urlConnection = url.openConnection();
 
-        setAttribution(urlConnection);
-
         InputStream responseBody = urlConnection.getInputStream();
 
-
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.set(HttpHeaders.CONTENT_TYPE,"application/json;charset=utf-8");
-
-        return new SimpleClientHttpResponse(responseBody,httpHeaders);
-    }
-
-    private void setAttribution(URLConnection conn) {
-        // 设置通用的请求属性
-//        conn.setRequestProperty("accept", "*/*");
-//        conn.setRequestProperty("connection", "Keep-Alive");
-//        conn.setRequestProperty("Accept-Charset", "UTF-8");
-//        conn.setRequestProperty("Transfer-Encoding", "UTF-8");
-//        conn.setRequestProperty("Content-Type", "application/json");
-//        // 发送POST请求必须设置如下两行
-//        conn.setDoOutput(true);
-//        conn.setDoInput(true);
+        return new SimpleClientHttpResponse(responseBody,new HttpHeaders());
     }
 
 
@@ -134,6 +114,7 @@ public class LoadBalancedRequestInterceptor implements ClientHttpRequestIntercep
 
         @Override
         public HttpHeaders getHeaders() {
+            httpHeaders.set(HttpHeaders.CONTENT_TYPE,"application/json;charset=utf-8");
             return httpHeaders;
         }
     }
