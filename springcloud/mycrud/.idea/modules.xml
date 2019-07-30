@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/mycrud.iml" filepath="$PROJECT_DIR$/.idea/mycrud.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-client-hello/spring-client-hello.iml" filepath="$PROJECT_DIR$/spring-client-hello/spring-client-hello.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-data-hello/spring-data-hello.iml" filepath="$PROJECT_DIR$/spring-data-hello/spring-data-hello.iml" />
+    </modules>
+  </component>
+</project>
