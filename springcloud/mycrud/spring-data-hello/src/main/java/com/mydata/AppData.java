@@ -20,5 +20,7 @@ public class AppData
         new SpringApplicationBuilder(AppData.class).
                 web(WebApplicationType.SERVLET).
                 run(args);
+
+
     }
 }
