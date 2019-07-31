@@ -6,22 +6,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.core.env.Environment;
 
-public class EnvController implements BaseController{
+/**
+ * 获取ZK服务基础Controller
+ * @Date 20190731
+ */
+public abstract class EnvController extends BaseController{
 
-
-    @Value("${server.port}")
-    private Integer port;
-
-    public Integer getPort(){
-        return port;
-    }
-
-    @Value("${application.name}")
-    private String currentServiceName;
-
-    public String getCurrentServiceName(){
-        return currentServiceName;
-    }
 
     private final Environment environment;
 

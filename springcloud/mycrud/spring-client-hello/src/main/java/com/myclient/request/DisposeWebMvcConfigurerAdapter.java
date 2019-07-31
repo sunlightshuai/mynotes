@@ -9,7 +9,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  *
  * 将拦截器配置回调中
  * @date 20190729
- * @author sunli
  */
 @Configuration
 public class DisposeWebMvcConfigurerAdapter implements WebMvcConfigurer {

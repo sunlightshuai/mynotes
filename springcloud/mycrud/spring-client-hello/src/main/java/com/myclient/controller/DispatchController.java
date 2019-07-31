@@ -1,18 +1,25 @@
 package com.myclient.controller;
 
-import com.myclient.controller.base.LoadBalancedController;
+import com.myclient.controller.base.BaseController;
+import com.myclient.feign.FeignDataServices;
+import com.myclient.util.JsonUtil;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.*;
 
 @RestController
-public class DispatchController extends LoadBalancedController {
+public class DispatchController extends BaseController {
 
     private final ExecutorService executorService = Executors.newSingleThreadExecutor();
+
+    @Autowired
+    private FeignDataServices feignDataServices;
 
     @HystrixCommand(
             fallbackMethod = "errContent",
@@ -20,28 +27,28 @@ public class DispatchController extends LoadBalancedController {
                     @HystrixProperty(name="execution.isolation.thread.timeoutInMilliseconds",value="1000")
             }
     )
-    @GetMapping(value="/{applicationName}/{serviceName}")
-    public String invokeDispatch(@PathVariable String applicationName, @PathVariable String serviceName){
-
+    @RequestMapping("/{applicationName}/{functionName}/{serviceName}")
+    public String dispatchInvoke( @PathVariable String applicationName, @PathVariable String functionName, @PathVariable String serviceName,@RequestBody String body){
         Future<String> future = executorService.submit(()->{
-            return doInvokeDispatch( applicationName,  serviceName);
+            return feignDataServices.invoke(functionName,serviceName,body);
         });
         String invokeResult = null;
         try {
             invokeResult = future.get(1000, TimeUnit.MILLISECONDS);
         } catch (InterruptedException | ExecutionException | TimeoutException e) {
-            invokeResult = errContent(applicationName,serviceName);
+            invokeResult = errContent(applicationName,functionName,serviceName,body);
         }
         return invokeResult;
-
     }
 
-    private String doInvokeDispatch(String applicationName, String serviceName){
-        return  getRestTemplate().postForObject(applicationName+"/"+serviceName,null,String.class);
-    }
-
-    public String errContent(String applicationName,String serviceName){
-        return "get " + serviceName + " err.";
+    public String errContent(String applicationName, String functionName, String serviceName,String body){
+        Map<String,Object> errorMap = new HashMap<>();
+        errorMap.put("applicationName",applicationName);
+        errorMap.put("functionName",functionName);
+        errorMap.put("serviceName",serviceName);
+        errorMap.put("body",body);
+        errorMap.put("error","errorCode");
+        return JsonUtil.mapToJsonStr(errorMap);
     }
 
 }

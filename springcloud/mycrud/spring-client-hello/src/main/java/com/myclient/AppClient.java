@@ -1,8 +1,6 @@
 package com.myclient;
 
-import com.myclient.annotation.EnableRestFeignClient;
-import com.myclient.feign.FeignDemo;
-import com.myclient.feign.RestFeignDemo;
+import com.myclient.feign.FeignDataServices;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -19,8 +17,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableHystrix
 @EnableDiscoveryClient
 @EnableScheduling
-@EnableFeignClients(clients = FeignDemo.class)
-@EnableRestFeignClient(clients = RestFeignDemo.class)
+@EnableFeignClients(clients = FeignDataServices.class)
 public class AppClient
 {
     public static void main( String[] args )

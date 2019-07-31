@@ -22,11 +22,7 @@ public class RequestHandlerInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
 
-        String requestURI = request.getRequestURI();
-
-        System.out.println(request.getRequestURI());
-
-
+        // String requestURI = request.getRequestURI();
         return true;
     }
 
@@ -39,6 +35,7 @@ public class RequestHandlerInterceptor implements HandlerInterceptor {
 
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler,
                                  @Nullable Exception ex) throws Exception {
+
 
     }
 
