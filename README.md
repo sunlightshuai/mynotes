@@ -3,4 +3,8 @@
   com/character/path 处理路径的算法</br>
   com/encrypt/des des加密算法</br>
 ## java-design-pattern
- 一些设计模式，分析了SpringApplication.run启动来加深设计模式的理解[博客主页](https://juejin.im/user/5c6436fbf265da2d8e70cc18)</br>
+ 一些设计模式。
+
+## connect-http-common
+
+没有含义的设计。
